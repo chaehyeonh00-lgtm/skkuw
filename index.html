@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성대신문 기사 모음 — 황채현</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: rgb(55, 53, 47);
+    --sub: rgba(55, 53, 47, 0.55);
+    --faint: rgba(55, 53, 47, 0.35);
+    --line: rgba(55, 53, 47, 0.09);
+    --hover: rgba(55, 53, 47, 0.04);
+    --tab-on: rgb(55, 53, 47);
+    --cover: linear-gradient(120deg, #e9e5dc 0%, #dfe6e1 55%, #d9e1ea 100%);
+
+    --gray-bg:#e3e2e0;   --gray-fg:#32302c;
+    --brown-bg:#eee0da;  --brown-fg:#442a1e;
+    --orange-bg:#fadec9; --orange-fg:#49290e;
+    --yellow-bg:#fdecc8; --yellow-fg:#402c1b;
+    --green-bg:#dbeddb;  --green-fg:#1c3829;
+    --blue-bg:#d3e5ef;   --blue-fg:#183347;
+    --purple-bg:#e8deee; --purple-fg:#412454;
+    --pink-bg:#f5e0e9;   --pink-fg:#4c2337;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #191919;
+      --fg: rgba(255, 255, 255, 0.84);
+      --sub: rgba(255, 255, 255, 0.46);
+      --faint: rgba(255, 255, 255, 0.28);
+      --line: rgba(255, 255, 255, 0.08);
+      --hover: rgba(255, 255, 255, 0.04);
+      --tab-on: rgba(255, 255, 255, 0.84);
+      --cover: linear-gradient(120deg, #2b2a27 0%, #252b27 55%, #232830 100%);
+
+      --gray-bg:#373737;   --gray-fg:#d4d4d4;
+      --brown-bg:#4a3a33;  --brown-fg:#e6d4cc;
+      --orange-bg:#5c3b23; --orange-fg:#f2d3bb;
+      --yellow-bg:#564328; --yellow-fg:#f3dfb8;
+      --green-bg:#2b4632;  --green-fg:#cde6d2;
+      --blue-bg:#28456c;   --blue-fg:#cfe0f3;
+      --purple-bg:#483660; --purple-fg:#e3d6f0;
+      --pink-bg:#5b3249;   --pink-fg:#f2d3e2;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Pretendard, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .cover { height: 200px; background: var(--cover); }
+  .page { max-width: 900px; margin: 0 auto; padding: 0 24px 120px; }
+
+  .icon { font-size: 72px; line-height: 1; margin-top: -42px; position: relative; }
+  h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; margin: 20px 0 16px; line-height: 1.2; }
+
+  /* 페이지 속성 */
+  .props { margin: 0 0 18px; }
+  .prop { display: flex; align-items: center; min-height: 34px; font-size: 14px; }
+  .prop dt { width: 160px; flex: none; display: flex; align-items: center; gap: 8px; color: var(--sub); }
+  .prop dt svg { width: 16px; height: 16px; flex: none; }
+  .prop dd { margin: 0; }
+  .prop dd a { text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+
+  hr { border: 0; border-top: 1px solid var(--line); margin: 20px 0; }
+
+  .text { margin: 4px 0 36px; }
+
+  /* 데이터베이스 */
+  .db-title { font-size: 20px; font-weight: 700; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+  .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 0; }
+  .tab {
+    font: inherit; font-size: 14px; color: var(--sub);
+    background: none; border: 0; cursor: pointer;
+    padding: 6px 8px 7px; border-radius: 4px 4px 0 0;
+    display: flex; align-items: center; gap: 6px;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tab svg { width: 14px; height: 14px; }
+  .tab:hover { background: var(--hover); }
+  .tab[aria-selected="true"] { color: var(--tab-on); border-bottom-color: var(--tab-on); font-weight: 500; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; padding-top: 16px; }
+  .card {
+    display: flex; flex-direction: column;
+    border-radius: 6px; overflow: hidden; text-decoration: none; color: inherit;
+    background: var(--bg);
+    box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgba(15, 15, 15, .04);
+    transition: background .12s;
+  }
+  .card:hover { background: var(--hover); }
+  .thumb { aspect-ratio: 16 / 10; background: var(--hover); border-bottom: 1px solid var(--line); overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb.none { display: flex; align-items: flex-end; padding: 14px; }
+  .thumb.none p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--faint); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .card .ttl { font-size: 14px; font-weight: 600; line-height: 1.45; }
+  .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--sub); }
+  .meta .tag { font-size: 12px; }
+
+  .tag { display: inline-block; padding: 0 6px; border-radius: 3px; font-size: 13px; line-height: 20px; }
+  .gray{background:var(--gray-bg);color:var(--gray-fg)} .brown{background:var(--brown-bg);color:var(--brown-fg)}
+  .orange{background:var(--orange-bg);color:var(--orange-fg)} .yellow{background:var(--yellow-bg);color:var(--yellow-fg)}
+  .green{background:var(--green-bg);color:var(--green-fg)} .blue{background:var(--blue-bg);color:var(--blue-fg)}
+  .purple{background:var(--purple-bg);color:var(--purple-fg)} .pink{background:var(--pink-bg);color:var(--pink-fg)}
+
+  .toolbar { display: flex; align-items: center; gap: 6px; padding: 8px 0; border-bottom: 1px solid var(--line); position: relative; flex-wrap: wrap; }
+  .pill {
+    font: inherit; font-size: 14px; color: var(--sub);
+    background: none; border: 1px solid var(--line); border-radius: 999px;
+    padding: 1px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; line-height: 22px;
+  }
+  .pill:hover { background: var(--hover); }
+  .pill.on { color: #2383e2; border-color: rgba(35, 131, 226, .35); background: rgba(35, 131, 226, .07); }
+  .pill svg { width: 12px; height: 12px; }
+  .reset { font: inherit; font-size: 14px; color: var(--sub); background: none; border: 0; cursor: pointer; padding: 2px 6px; border-radius: 4px; }
+  .reset:hover { background: var(--hover); }
+  .menu {
+    position: absolute; top: calc(100% + 4px); left: 0; z-index: 10;
+    background: var(--bg); border-radius: 6px; padding: 6px 0; min-width: 220px;
+    box-shadow: 0 0 0 1px var(--line), 0 3px 6px rgba(15,15,15,.1), 0 9px 24px rgba(15,15,15,.2);
+  }
+  .menu[hidden] { display: none; }
+  .menu label { display: flex; align-items: center; gap: 10px; padding: 4px 12px; font-size: 14px; cursor: pointer; }
+  .menu label:hover { background: var(--hover); }
+  .menu input { margin: 0; accent-color: #2383e2; }
+  .menu .n { margin-left: auto; color: var(--faint); font-size: 12px; }
+  .empty { padding: 24px 8px; color: var(--sub); font-size: 14px; }
+  .count { font-size: 14px; color: var(--sub); padding: 8px; }
+
+  @media (max-width: 600px) {
+    .cover { height: 130px; }
+    .icon { font-size: 56px; margin-top: -32px; }
+    h1 { font-size: 30px; }
+    .prop dt { width: 110px; }
+  }
+</style>
+</head>
+<body>
+<div class="cover"></div>
+<div class="page">
+  <div class="icon" aria-hidden="true">📰</div>
+  <h1>성대신문 기사 모음</h1>
+
+  <dl class="props">
+    <div class="prop">
+      <dt><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.2c-2.7 0-5.5 1.3-5.5 3.3V14h11v-1.5c0-2-2.8-3.3-5.5-3.3Z"/></svg>기자</dt>
+      <dd>황채현</dd>
+    </div>
+    <div class="prop">
+      <dt><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3"/></svg>활동 기간</dt>
+      <dd>2024년 9월 → 2025년 11월</dd>
+    </div>
+    <div class="prop">
+      <dt><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6.5 9.5 9.5 6.5M7 4.5l1.2-1.2a2.5 2.5 0 0 1 3.5 3.5L10.5 8M9 11.5l-1.2 1.2a2.5 2.5 0 0 1-3.5-3.5L5.5 8"/></svg>매체</dt>
+      <dd><a href="https://www.skkuw.com" target="_blank" rel="noopener">성대신문</a></dd>
+    </div>
+  </dl>
+
+  <hr>
+
+  <p class="text">성균관대학교 학보사 성대신문에서 기자로 활동하며 대학 사회의 다양한 현안을 취재하고, 학내 구성원들의 목소리를 전달했습니다.</p>
+
+  <h2 class="db-title">주요 기사</h2>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="toolbar">
+    <button class="pill" id="catBtn" aria-haspopup="true" aria-expanded="false"></button>
+    <button class="reset" id="reset" hidden>초기화</button>
+    <div class="menu" id="menu" hidden></div>
+  </div>
+  <div class="gallery" id="gallery"></div>
+  <div class="count" id="count"></div>
+</div>
+
+<script>
+const THUMB = "https://cdn.skkuw.com/news/thumbnail/";
+const BASE = "https://www.skkuw.com/news/articleView.html?idxno=";
+const COLOR = {
+  "보도기획":"blue", "보도 그 이후":"yellow", "보도사진":"green", "성균인에게 묻다":"gray",
+  "기자의 이목":"purple", "취재후기":"pink", "여론·칼럼":"brown",
+  "특집":"orange", "특집·인터뷰":"orange", "인물 인터뷰":"orange"
+};
+const ARTICLES = [
+  ["기자의 이목","사랑해야 느낄 수 있는 것들","2025.11.02",32648,"202511/32648_22297_4630"],
+  ["기자의 이목","언젠가 보일 밝은 빛","2025.09.22",32541,"202511/32541_22309_97"],
+  ["특집·인터뷰","입문 장벽을 낮춰 뜨개질의 즐거움을 알려 드리고 싶어요","2025.09.07",32430,"202509/32430_22117_3353"],
+  ["보도기획","임기의 반환점을 맞은 스캐치, 공약 이행 현황을 점검하다","2025.06.09",32271,"202506/32271_22003_3459"],
+  ["보도사진","승리를 향한 뜨거운 열정으로 가득찼던 '2025 LC E-sports 대회'","2025.05.25",32200,"202505/32200_21881_056"],
+  ["보도기획","장애학우인권좌담회, 장애 학우의 목소리를 듣다","2025.05.12",32146,"202505/32146_21832_3823"],
+  ["보도기획","교내 성폭력 대응 체계, 적절하게 갖춰져 있나","2025.05.12",32144,"202505/32144_21834_4530"],
+  ["보도기획","더욱 안전한 학내 디지털 환경을 조성하기 위해","2025.04.13",32076,null],
+  ["보도기획","구불구불 찾아오는 봄을 따라가는 금잔디 문화제","2025.04.07",32035,"202504/32035_21759_224"],
+  ["인물 인터뷰","세상을 바라보는 시선을 담다, 정규민 영상 디자이너","2025.04.06",31994,"202504/31994_21733_2255"],
+  ["보도사진","학우들의 열정이 빚어낸 무대, 제47회 프문 원어연극 'Le malentendu(오해)'","2025.03.24",31954,"202503/31954_21696_4332"],
+  ["보도기획","교육국제화역량 인증제 우수인증대학 선정, 우리 학교 글로벌 경쟁력 강화할까","2025.03.10",31890,"202503/31890_21658_228"],
+  ["취재후기","수천 번의 자기혐오를 지나","2025.03.10",31874,"202503/31874_21649_556"],
+  ["보도기획","성균관 유생이 된 여러분을 진심으로 축하합니다","2025.03.04",31844,"202503/31844_21632_4017"],
+  ["보도 그 이후","글로벌 영역 TO 배분 개편, 안정적으로 정착할 수 있을까","2025.03.04",31841,"202503/31841_21631_3145"],
+  ["보도기획","우리 학교 강의실 부족, 어떻게 해결하고 있을까","2025.03.04",31840,"202503/31840_21635_4759"],
+  ["보도기획","5G 특화망 구축, 실내외 경계 없이 안정적인 네트워크 마련될 전망","2024.12.08",31732,"202412/31732_21548_5912"],
+  ["보도기획","학우들의 편리한 생활 위해 힘쓴 '인사캠 맞춤 공약'","2024.11.25",31644,"202411/31644_21451_5020"],
+  ["특집","시간, 우리의 삶을 변화시키다","2024.11.25",31633,"202411/31633_21478_3520"],
+  ["보도기획","인사캠 학관 침수 피해, 원인은 이물질로 인한 배관 막힘","2024.11.11",31563,"202411/31563_21374_2847"],
+  ["보도기획","연구실 안전 점검·진단, 앞으로 해결해야 할 과제는","2024.11.11",31562,"202411/31562_21377_3233"],
+  ["보도기획","반도체 교육 선도 학교로서 탄탄한 입지를 다지기 위해","2024.11.04",31502,null],
+  ["보도기획","역사를 담은 유물의 향연, '잔치: re-Museum'","2024.10.14",31445,"202410/31445_21262_545"],
+  ["보도기획","자유전공계열, 우리 학교에 무사히 안착할 수 있을까","2024.09.30",31397,"202409/31397_21256_4716"],
+  ["성균인에게 묻다","성균인에게 묻다 – 자유전공계열 도입","2024.09.30",31396,null],
+  ["보도사진","가을 악동회, 꺼지지 않는 열정으로 학우들과 함께 하다","2024.09.30",31395,"202409/31395_21241_249"],
+  ["보도기획","비라이트, 학우들의 반짝이는 학교생활 위해","2024.09.09",31337,"202409/31337_21187_2757"],
+  ["보도기획","도넛, 학우들의 달콤한 한 학기 위해","2024.09.09",31332,"202409/31332_21178_2020"],
+  ["보도기획","유행, 학우들에게 다가가는 한 학기였나","2024.09.02",31257,"202409/31257_21123_953"],
+];
+const VIEWS = ["전체", "2025", "2024"];
+const TABLE_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="2.5" width="5" height="5" rx="1"/><rect x="9" y="2.5" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>';
+const fmt = d => { const [y, m, dd] = d.split("."); return `${y}년 ${+m}월 ${+dd}일`; };
+let view = "전체";
+const CATS = [...new Set(ARTICLES.map(a => a[0]))];
+const picked = new Set();
+const CARET = '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 4.5h7L6 8.5z"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render() {
+  document.getElementById("tabs").innerHTML = VIEWS.map(v =>
+    `<button class="tab" role="tab" aria-selected="${v === view}" data-v="${v}">${TABLE_ICON}${v}</button>`).join("");
+  const btn = document.getElementById("catBtn");
+  const names = [...picked];
+  btn.className = "pill" + (names.length ? " on" : "");
+  btn.innerHTML = (names.length ? `분야: ${esc(names.length > 2 ? names.slice(0, 2).join(", ") + ` 외 ${names.length - 2}` : names.join(", "))}` : "분야") + CARET;
+  document.getElementById("reset").hidden = !names.length;
+  document.getElementById("menu").innerHTML = CATS.map(c =>
+    `<label><input type="checkbox" value="${esc(c)}" ${picked.has(c) ? "checked" : ""}><span class="tag ${COLOR[c] || "gray"}">${esc(c)}</span><span class="n">${ARTICLES.filter(a => a[0] === c).length}</span></label>`).join("");
+  const rows = ARTICLES.filter(a => (view === "전체" || a[2].startsWith(view)) && (!picked.size || picked.has(a[0])));
+  document.getElementById("gallery").innerHTML = rows.map(([cat, title, date, id, th]) =>
+    `<a class="card" href="${BASE}${id}" target="_blank" rel="noopener">
+      ${th ? `<div class="thumb"><img src="${THUMB}${th}_v150.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"></div>`
+           : `<div class="thumb none"><p>${esc(title)}</p></div>`}
+      <div class="body">
+        <div class="ttl">${esc(title)}</div>
+        <div class="meta"><span class="tag ${COLOR[cat] || "gray"}">${esc(cat)}</span><span>${fmt(date)}</span></div>
+      </div></a>`).join("");
+  document.getElementById("count").innerHTML = rows.length ? `개수 ${rows.length}` : `<div class="empty">조건에 맞는 기사가 없습니다.</div>`;
+}
+document.getElementById("tabs").addEventListener("click", e => {
+  const t = e.target.closest(".tab"); if (!t) return;
+  view = t.dataset.v; render();
+});
+const menu = document.getElementById("menu"), catBtn = document.getElementById("catBtn");
+catBtn.addEventListener("click", e => {
+  e.stopPropagation(); menu.hidden = !menu.hidden; catBtn.setAttribute("aria-expanded", !menu.hidden);
+});
+menu.addEventListener("click", e => e.stopPropagation());
+menu.addEventListener("change", e => {
+  e.target.checked ? picked.add(e.target.value) : picked.delete(e.target.value);
+  render(); menu.hidden = false;
+});
+document.getElementById("reset").addEventListener("click", () => { picked.clear(); menu.hidden = true; render(); });
+document.addEventListener("click", () => { menu.hidden = true; catBtn.setAttribute("aria-expanded", "false"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") menu.hidden = true; });
+render();
+</script>
+</body>
+</html>
